@@ -106,7 +106,6 @@ jobs:
 
     - name: Repack for Huawei recovery_ramdisk
       run: |
-        cd workspace
         python3 ${DEVICE_PATH}/repack_huawei_recovery.py \
           out/target/product/${DEVICE_NAME}/${BUILD_TARGET}.img \
           out/target/product/${DEVICE_NAME}/recovery_ramdisk.img
