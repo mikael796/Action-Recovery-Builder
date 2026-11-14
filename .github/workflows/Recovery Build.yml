@@ -95,6 +95,11 @@ jobs:
     - name: Building recovery
       run: |
         source build/envsetup.sh
+        echo "=== DEBUG: device tree contents ==="
+        ls -la device/huawei/honor8s/ 2>/dev/null || echo "!!! device/huawei/honor8s MISSING"
+        find device -maxdepth 3 -name "AndroidProducts.mk" 2>/dev/null || true
+        cat device/huawei/honor8s/AndroidProducts.mk 2>/dev/null || echo "!!! AndroidProducts.mk NOT FOUND"
+        echo "=== DEBUG end ==="
         export ALLOW_MISSING_DEPENDENCIES=true
         lunch omni_${DEVICE_NAME}-eng && make ${BUILD_TARGET}image -j$(nproc --all)
       working-directory: workspace
