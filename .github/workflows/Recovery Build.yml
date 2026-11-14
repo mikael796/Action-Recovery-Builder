@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - name: Display Build Configuration
       run: |
@@ -86,9 +86,11 @@ jobs:
 
     - name: Install Python 2
       run: |
-        sudo apt -y install python2
-        cd /usr/bin
-        sudo ln -sf python2 python
+        sudo apt -y install python2 || true
+        if [ -f /usr/bin/python2 ]; then
+          cd /usr/bin
+          sudo ln -sf python2 python
+        fi
 
     - name: Building recovery
       run: |
